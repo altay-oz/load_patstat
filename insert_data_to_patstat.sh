@@ -20,7 +20,7 @@ if [ ! -e ./create_patstat_keys.sql ]; then
 fi
 
 # creating tables within the PATSTAT database
-psql patstat < ./create_patstat_tables.sql
+## psql patstat < ./create_patstat_tables.sql
 
 read -e -p "Enter the path to the zip files: [/path/to/patstat/zip_files]" ZIP_FILES_DIR
 
@@ -46,14 +46,13 @@ tls212_citation
 tls214_npl_publn
 tls215_citn_categ	
 tls216_appln_contn	
-tls218_docdb_fam	
-tls219_inpadoc_fam
 tls222_appln_jp_class	
 tls223_appln_docus	
 tls224_appln_cpc
 tls227_pers_publn
 tls228_docdb_fam_citn
 tls229_appln_nace2
+tls230_appln_techn_field
 tls801_country
 tls901_techn_field_ipc
 tls902_ipc_nace2"
@@ -77,7 +76,7 @@ do
    do
        # file tlsXXX_partXXX.zip is unziped in a temporary directory
        echo "unziping $file"
-       gunzip -c $file > $TMP_DIR/file_to_be_inserted.csv
+       unzip -p $file > $TMP_DIR/file_to_be_inserted.csv
        psql -c "\COPY $table_name from '$TMP_DIR/file_to_be_inserted.csv' DELIMITER AS ',' CSV HEADER QUOTE AS '\"' " patstat
        echo "INSERTED $file"
    done
@@ -88,4 +87,4 @@ rm $TMP_DIR/file_to_be_inserted.csv
 rmdir $TMP_DIR
 
 # creating index, it will take very long hours, don't despair :)
-psql patstat < ./create_patstat_keys.sql
+## psql patstat < ./create_patstat_keys.sql
