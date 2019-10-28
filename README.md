@@ -11,3 +11,5 @@ postgres=# CREATE DATABASE patstat;
 postgres=# GRANT ALL PRIVILEGES ON DATABASE patstat to _your_user_name_;     
 
 Then run insert_data_patstat.sh, after few hours to control the number of rows in the patstat database run count_rows_in_patstat.sh
+
+If you have the legal events  additional CD to insert into tls221 and tls802 tables run insert_legal_events_data_to_patstat.sh
