@@ -38,6 +38,7 @@ do
     epo_count=`echo $i | cut -f2 -d" "`
     db_count=`psql -t -c "SELECT count(*) FROM $table_name" patstat`
 
+:'
     diff=$(($epo_count - $db_count))
 
     if [[ $diff == 0 ]]; then
@@ -49,6 +50,10 @@ do
     fi
     echo "table_name = $table_name, epo_count = $epo_count, db_count = $db_count, diff = $diff"
     echo " "
+'
+
+echo "$table_name contains $epo_count lines."
+
 done
 
 #set +x
