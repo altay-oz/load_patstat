@@ -45,7 +45,7 @@ ALTER TABLE tls230_appln_techn_field ADD PRIMARY KEY (appln_id, techn_field_nr);
 
 ALTER TABLE tls231_inpadoc_legal_event ADD PRIMARY KEY (event_id);
 
-ALTER TABLE tls801_country ADD PRIMARY KEY (country_code);
+ALTER TABLE tls801_country ADD PRIMARY KEY (ctry_code);
 
 ALTER TABLE tls803_legal_event_code ADD PRIMARY KEY (event_auth, event_code);
 
@@ -102,10 +102,6 @@ ALTER TABLE tls215_citn_categ ADD FOREIGN KEY (pat_publn_id, citn_replenished, c
 ALTER TABLE tls216_appln_contn ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 ALTER TABLE tls216_appln_contn ADD FOREIGN KEY (parent_appln_id) REFERENCES tls201_appln(appln_id);
 
-ALTER TABLE tls218_docdb_fam ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-
-ALTER TABLE tls219_inpadoc_fam ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-
 ALTER TABLE tls222_appln_jp_class ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 
 ALTER TABLE tls223_appln_docus ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
@@ -115,21 +111,21 @@ ALTER TABLE tls224_appln_cpc ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(
 ALTER TABLE tls227_pers_publn ADD FOREIGN KEY (person_id) REFERENCES tls206_person(person_id);
 ALTER TABLE tls227_pers_publn ADD FOREIGN KEY (pat_publn_id) REFERENCES tls211_pat_publn(pat_publn_id);
 
-ALTER TABLE tls228_docdb_fam_citn ADD FOREIGN KEY (docdb_family_id) REFERENCES tls201_appln(docdb_family_id);
-ALTER TABLE tls228_docdb_fam_citn ADD FOREIGN KEY (cited_docdb_family_id) REFERENCES tls201_appln(docdb_family_id);
+--ALTER TABLE tls228_docdb_fam_citn ADD FOREIGN KEY (docdb_family_id) REFERENCES tls201_appln(doc_db_family_id);
+--ALTER TABLE tls228_docdb_fam_citn ADD FOREIGN KEY (cited_docdb_family_id) REFERENCES tls201_appln(doc_db_family_id);
 
 ALTER TABLE tls229_appln_nace2 ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-ALTER TABLE tls229_appln_nace2 ADD FOREIGN KEY (nace2_code) REFERENCES tls902_ipc_nace2(nace2_code);
+--ALTER TABLE tls229_appln_nace2 ADD FOREIGN KEY (nace2_code) REFERENCES tls902_ipc_nace2(nace2_code);
 
 ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (techn_field_nr) REFERENCES tls901_techn_field_ipc(techn_field_nr);
+--ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (techn_field_nr) REFERENCES tls901_techn_field_ipc(techn_field_nr);
 
-ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
+--ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (event_auth, event_code) REFERENCES tls803_legal_event_code(event_auth, event_code);
 
 ALTER TABLE tls801_country ADD FOREIGN KEY (ctry_code) REFERENCES tls206_person(person_ctry_code);
 ALTER TABLE tls801_country ADD FOREIGN KEY (ctry_code) REFERENCES tls906_person(person_ctry_code); 
 
-ALTER TABLE tls901_techn_field_ipc ADD FOREIGN KEY (techn_field_nr) REFERENCES tls209_appln_ipc(tech_field_nr);
+--ALTER TABLE tls901_techn_field_ipc ADD FOREIGN KEY (techn_field_nr) REFERENCES tls209_appln_ipc(techn_field_nr);
 
-ALTER TABLE tls904_nuts ADD FOREIGN KEY (nuts) REFERENCES tls906_person(nuts); 
+--ALTER TABLE tls904_nuts ADD FOREIGN KEY (nuts) REFERENCES tls906_person(nuts); 
