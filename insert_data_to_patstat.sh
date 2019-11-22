@@ -37,11 +37,11 @@ fi
 read -e -p "Enter the path to the zip files: [/path/to/patstat/zip_files]" ZIP_FILES_DIR
 
 ## defining tmp directory 
-TMP_DIR="$ZIP_FILES_DIR/tmp"
+TMP_DIR=$ZIP_FILES_DIR"tmp"
 
 ## defining tmp directory 
-if [ ! -d $TMP_DIR ]; then
-    mkdir $TMP_DIR
+if [ ! -d "$TMP_DIR" ]; then
+    mkdir "$TMP_DIR"
 fi
 
 # list of tables to be filled
@@ -82,9 +82,10 @@ psql patstat < ./create_patstat_tables.sql
 read -e -p "Do you want to create keys, indexes just after the data is inserted? y/n " INDEX_Y
 
 # control if there are zip files in the given directory
-count=`ls $ZIP_FILES_DIR/*.zip 2>/dev/null | wc -l`
+# counting the number of zip files
+count=`ls "$ZIP_FILES_DIR"*.zip 2>/dev/null | wc -l`
 if [ $count == 0 ]; then
-    echo "There is no zip file in ", $ZIP_FILES_DIR
+    echo "There is no zip file in "$ZIP_FILES_DIR
     exit 0
 fi
 
@@ -96,19 +97,19 @@ do
    echo $base_name
 
    # for files starting tlsXXX_partXXX.gzip
-   for file in $ZIP_FILES_DIR/$base_name*
+   for file in "$ZIP_FILES_DIR"$base_name*
    do
        # file tlsXXX_partXXX.zip is unziped in a temporary directory
        echo "unziping $file"
-       unzip -p $file > $TMP_DIR/file_to_be_inserted.csv
+       unzip -p "$file" > "$TMP_DIR/"file_to_be_inserted.csv
        psql -c "\COPY $table_name from '$TMP_DIR/file_to_be_inserted.csv' DELIMITER AS ',' CSV HEADER QUOTE AS '\"' " patstat
        echo "INSERTED $file"
    done
 done
 
 # cleaning the rest
-rm $TMP_DIR/file_to_be_inserted.csv
-rmdir $TMP_DIR
+rm "$TMP_DIR"file_to_be_inserted.csv
+rmdir "$TMP_DIR"
 
 # index creation, it will take very long hours, don't despair :)
 if [ $INDEX_Y == 'y' ]; then
