@@ -34,10 +34,10 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE patstat to your_user_name;"
     exit 0
 fi
 
-read -e -p "Enter the path to the zip files: [/path/to/patstat/zip_files]" ZIP_FILES_DIR
+read -e -p "Enter the path to the zip files: [/path/to/patstat/zip_files] " ZIP_FILES_DIR
 
 ## defining tmp directory 
-TMP_DIR=$ZIP_FILES_DIR"tmp"
+TMP_DIR=$ZIP_FILES_DIR"tmp/"
 
 ## defining tmp directory 
 if [ ! -d "$TMP_DIR" ]; then
@@ -104,6 +104,7 @@ do
        unzip -p "$file" > "$TMP_DIR/"file_to_be_inserted.csv
        psql -c "\COPY $table_name from '$TMP_DIR/file_to_be_inserted.csv' DELIMITER AS ',' CSV HEADER QUOTE AS '\"' " patstat
        echo "INSERTED $file"
+       echo " "
    done
 done
 
