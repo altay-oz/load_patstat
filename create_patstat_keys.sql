@@ -121,10 +121,7 @@ ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (appln_id) REFERENCES tls20
 --ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (techn_field_nr) REFERENCES tls901_techn_field_ipc(techn_field_nr);
 
 --ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (event_auth, event_code) REFERENCES tls803_legal_event_code(event_auth, event_code);
-
-ALTER TABLE tls801_country ADD FOREIGN KEY (ctry_code) REFERENCES tls206_person(person_ctry_code);
-ALTER TABLE tls801_country ADD FOREIGN KEY (ctry_code) REFERENCES tls906_person(person_ctry_code); 
+--ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (event_auth, event_code) REFERENCES tls803_legal_event_code(event_auth, event_code);
 
 --ALTER TABLE tls901_techn_field_ipc ADD FOREIGN KEY (techn_field_nr) REFERENCES tls209_appln_ipc(techn_field_nr);
 
