@@ -54,7 +54,7 @@ CREATE TABLE tls205_tech_rel (
 CREATE TABLE tls206_person (
     person_id integer DEFAULT 0 NOT NULL,
     person_name text DEFAULT '' NOT NULL,
-    person_name_orig_lg char(2) DEFAULT '' NOT NULL,
+    person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
     person_address text DEFAULT '' NOT NULL,
     person_ctry_code varchar(2) DEFAULT '' NOT NULL, 
     doc_std_name_id integer DEFAULT 0 NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE tls215_citn_categ (
     pat_publn_id integer DEFAULT 0 NOT NULL,
     citn_replenished integer DEFAULT 0 NOT NULL,
     citn_id smallint DEFAULT 0 NOT NULL,
-    citn_categ char(1) DEFAULT '' NOT NULL,
+    citn_categ varchar(10) DEFAULT '' NOT NULL,
     relevant_claim smallint DEFAULT 0 NOT NULL
 );
 
@@ -178,7 +178,7 @@ CREATE TABLE tls226_person_orig (
 	source char(5) DEFAULT '' NOT NULL,
 	source_version varchar(10) DEFAULT '' NOT NULL,
 	name_freeform varchar(500) DEFAULT '' NOT NULL,
-	person_name_orig_lg char(2) DEFAULT '' NOT NULL,
+	person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
 	last_name varchar(500) DEFAULT '' NOT NULL,
 	first_name varchar(500) DEFAULT '' NOT NULL,
 	middle_name varchar(500) DEFAULT '' NOT NULL,
@@ -311,6 +311,7 @@ CREATE TABLE tls904_nuts (
 CREATE TABLE tls906_person (
     person_id integer DEFAULT 0 NOT NULL,
     person_name text DEFAULT '' NOT NULL,
+    person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
     person_address text DEFAULT '' NOT NULL,
     person_ctry_code varchar(2) DEFAULT '' NOT NULL,
     nuts varchar(5) DEFAULT '',
