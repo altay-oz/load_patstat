@@ -1,4 +1,8 @@
-EPO PATSTAT (2019 spring) installation bash scripts for PostgreSQL
+EPO PATSTAT (2021 spring) installation bash scripts for PostgreSQL
+
+The updated scripts for the 2021 spring version are based on the 2019 scripts provided by altay-oz/load_patstat:
+
+Remark: Please take into account to use dos2unix or unix2dos to adjust the file format to your used system. These scripts were tested with Ubuntu 18. 
 
 These scripts help to insert data into PATSTAT DB from zip files found in PATSTAT bulk data sets.                
 
