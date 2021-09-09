@@ -23,7 +23,7 @@ fi
 if psql -lqt | cut -d \| -f 1 | grep -qw patstat; then
     # database exists
     echo "patstat database exists, installation starts"
-    
+
 else
 
     echo "patstat database doesn't exist."
@@ -36,16 +36,16 @@ fi
 
 read -e -p "Enter the path to the zip files: [/path/to/patstat/zip_files] " ZIP_FILES_DIR
 
-## defining tmp directory 
+## defining tmp directory
 TMP_DIR=$ZIP_FILES_DIR"tmp/"
 
-## defining tmp directory 
+## defining tmp directory
 if [ ! -d "$TMP_DIR" ]; then
     mkdir "$TMP_DIR"
 fi
 
 # list of tables to be filled
-table_list="	
+table_list="
 tls201_appln
 tls202_appln_title
 tls203_appln_abstr
@@ -63,6 +63,7 @@ tls216_appln_contn
 tls222_appln_jp_class
 tls223_appln_docus
 tls224_appln_cpc
+tls225_docdb_fam_cpc
 tls226_person_orig
 tls227_pers_publn
 tls228_docdb_fam_citn
@@ -73,8 +74,7 @@ tls801_country
 tls803_legal_event_code
 tls901_techn_field_ipc
 tls902_ipc_nace2
-tls904_nuts
-tls906_person"
+tls904_nuts"
 
 # creating tables within the PATSTAT database
 psql patstat < ./create_patstat_tables.sql

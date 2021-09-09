@@ -31,7 +31,9 @@ ALTER TABLE tls222_appln_jp_class ADD PRIMARY KEY (appln_id, jp_class_scheme, jp
 
 ALTER TABLE tls223_appln_docus ADD PRIMARY KEY (appln_id, docus_class_symbol);
 
-ALTER TABLE tls224_appln_cpc ADD PRIMARY KEY (appln_id, cpc_class_symbol, cpc_scheme);
+ALTER TABLE tls224_appln_cpc ADD PRIMARY KEY (appln_id, cpc_class_symbol);
+
+ALTER TABLE tls225_docdb_fam_cpc ADD PRIMARY KEY (docdb_family_id, docdb_family_id, cpc_gener_auth);
 
 ALTER TABLE tls226_person_orig ADD PRIMARY KEY (person_orig_id);
 
@@ -55,15 +57,11 @@ ALTER TABLE tls902_ipc_nace2 ADD PRIMARY KEY (ipc, not_with_ipc, unless_with_ipc
 
 ALTER TABLE tls904_nuts ADD PRIMARY KEY (nuts);
 
-ALTER TABLE tls906_person ADD PRIMARY KEY (person_id);
-
 ------------------------------------------------
 -- defining alternate keys
 CREATE INDEX ON tls201_appln (appln_auth, appln_nr, appln_kind, receiving_office);
 
 CREATE INDEX ON tls206_person (person_name, person_name_orig_lg, person_address, person_ctry_code);
-
-CREATE INDEX ON tls906_person (person_name, person_name_orig_lg, person_address, person_ctry_code);
 
 CREATE INDEX ON tls211_pat_publn (publn_auth, publn_nr, publn_kind, publn_date);
 
@@ -108,6 +106,8 @@ ALTER TABLE tls223_appln_docus ADD FOREIGN KEY (appln_id) REFERENCES tls201_appl
 
 ALTER TABLE tls224_appln_cpc ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 
+--ALTER TABLE tls225_docdb_fam_cpc ADD FOREIGN KEY (docdb_family_id) REFERENCES tls201_appln(doc_db_family_id);
+
 ALTER TABLE tls227_pers_publn ADD FOREIGN KEY (person_id) REFERENCES tls206_person(person_id);
 ALTER TABLE tls227_pers_publn ADD FOREIGN KEY (pat_publn_id) REFERENCES tls211_pat_publn(pat_publn_id);
 
@@ -124,5 +124,3 @@ ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (appln_id) REFERENCES tls20
 --ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (event_auth, event_code) REFERENCES tls803_legal_event_code(event_auth, event_code);
 
 --ALTER TABLE tls901_techn_field_ipc ADD FOREIGN KEY (techn_field_nr) REFERENCES tls209_appln_ipc(techn_field_nr);
-
---ALTER TABLE tls904_nuts ADD FOREIGN KEY (nuts) REFERENCES tls906_person(nuts); 
