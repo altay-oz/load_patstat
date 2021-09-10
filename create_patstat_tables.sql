@@ -48,7 +48,7 @@ CREATE TABLE tls204_appln_prior (
 
 CREATE TABLE tls205_tech_rel (
     appln_id integer DEFAULT 0 NOT NULL,
-    tech_rel_appln_id integer DEFAULT 0 NOT NULL 
+    tech_rel_appln_id integer DEFAULT 0 NOT NULL
 );
 
 CREATE TABLE tls206_person (
@@ -56,14 +56,18 @@ CREATE TABLE tls206_person (
     person_name text DEFAULT '' NOT NULL,
     person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
     person_address text DEFAULT '' NOT NULL,
-    person_ctry_code varchar(2) DEFAULT '' NOT NULL, 
+    person_ctry_code char(2) DEFAULT '' NOT NULL,
+    nuts varchar(5) DEFAULT '' NOT NULL,
+    nuts_level smallint DEFAULT 9 NOT NULL,
     doc_std_name_id integer DEFAULT 0 NOT NULL,
     doc_std_name varchar(500) DEFAULT '' NOT NULL,
     psn_id integer DEFAULT 0 NOT NULL,
     psn_name varchar(500) DEFAULT '' NOT NULL,
     psn_level smallint DEFAULT 0 NOT NULL,
-    psn_sector varchar(50) DEFAULT '' NOT NULL
-);	       
+    psn_sector varchar(50) DEFAULT '' NOT NULL,
+    han_name text DEFAULT '' NOT NULL,
+    han_harmonized integer DEFAULT 0 NOT NULL
+);
 
 CREATE TABLE tls207_pers_appln (
     person_id integer DEFAULT 0 NOT NULL,
@@ -91,7 +95,7 @@ CREATE TABLE tls211_pat_publn (
     pat_publn_id integer DEFAULT 0 NOT NULL,
     publn_auth char(2) DEFAULT '' NOT NULL,
     publn_nr varchar(15) DEFAULT '' NOT NULL,
-    publn_nr_original varchar(100) DEFAULT '' NOT NULL,	
+    publn_nr_original varchar(100) DEFAULT '' NOT NULL,
     publn_kind char(2) DEFAULT '' NOT NULL,
     appln_id integer,
     publn_date date DEFAULT '9999-12-31' NOT NULL,
@@ -105,16 +109,17 @@ CREATE TABLE tls212_citation (
     citn_replenished integer DEFAULT 0 NOT NULL,
     citn_id smallint DEFAULT 0 NOT NULL,
     citn_origin char(3) DEFAULT '' NOT NULL,
-    cited_pat_publn_id integer DEFAULT 0 NOT NULL,
+    cited_pat_publn_id varchar(32) DEFAULT '0' NOT NULL,
     cited_appln_id integer DEFAULT 0 NOT NULL,
     pat_citn_seq_nr smallint DEFAULT 0::smallint NOT NULL,
     cited_npl_publn_id integer DEFAULT 0 NOT NULL,
     npl_citn_seq_nr smallint DEFAULT 0 NOT NULL,
-    citn_gener_auth varchar(2) DEFAULT '' NOT NULL
+    citn_gener_auth char(2) DEFAULT '' NOT NULL
 );
 
 CREATE TABLE tls214_npl_publn (
-    npl_publn_id int DEFAULT 0 NOT NULL,
+    npl_publn_id varchar(32) DEFAULT '0' NOT NULL,
+    xp_nr integer DEFAULT 0 NOT NULL,
     npl_type char(1) DEFAULT '' NOT NULL,
     npl_biblio text DEFAULT '' NOT NULL,
     npl_author varchar(1000) DEFAULT '' NOT NULL,
@@ -132,11 +137,11 @@ CREATE TABLE tls214_npl_publn (
     npl_doi varchar(500) DEFAULT '' NOT NULL,
     npl_isbn varchar(30) DEFAULT '' NOT NULL,
     npl_issn varchar(30) DEFAULT '' NOT NULL,
-    online_availability varchar(500) DEFAULT '' NOT NULL,	
+    online_availability varchar(500) DEFAULT '' NOT NULL,
     online_classification varchar(35) DEFAULT '' NOT NULL,
     online_search_date varchar(8) DEFAULT '' NOT NULL
 );
-	
+
 CREATE TABLE tls215_citn_categ (
     pat_publn_id integer DEFAULT 0 NOT NULL,
     citn_replenished integer DEFAULT 0 NOT NULL,
@@ -164,17 +169,24 @@ CREATE TABLE tls223_appln_docus (
 
 CREATE TABLE tls224_appln_cpc (
     appln_id integer DEFAULT 0 NOT NULL,
+    cpc_class_symbol varchar(19) DEFAULT '' NOT NULL
+);
+
+CREATE TABLE tls225_docdb_fam_cpc (
+    docdb_family_id integer DEFAULT 0 NOT NULL,
     cpc_class_symbol varchar(19) DEFAULT '' NOT NULL,
-    cpc_scheme varchar(5) DEFAULT '' NOT NULL,
-    cpc_version date DEFAULT '9999-12-31',
-    cpc_value char(1) DEFAULT '' NOT NULL,
+    cpc_gener_auth varchar(2) DEFAULT '' NOT NULL,
+    cpc_version date DEFAULT '9999-12-31' NOT NULL,
     cpc_position char(1) DEFAULT '' NOT NULL,
-    cpc_gener_auth varchar(2) DEFAULT '' NOT NULL
+    cpc_value char(1) DEFAULT '' NOT NULL,
+    cpc_action_date date DEFAULT '9999-12-31' NOT NULL,
+    cpc_status char(1) DEFAULT '' NOT NULL,
+    cpc data_source char(1) DEFAULT '' NOT NULL
 );
 
 CREATE TABLE tls226_person_orig (
-	person_orig_id int DEFAULT 0 NOT NULL,
-	person_id int DEFAULT 0 NOT NULL,
+	person_orig_id integer DEFAULT 0 NOT NULL,
+	person_id integer DEFAULT 0 NOT NULL,
 	source char(5) DEFAULT '' NOT NULL,
 	source_version varchar(10) DEFAULT '' NOT NULL,
 	name_freeform varchar(500) DEFAULT '' NOT NULL,
@@ -229,35 +241,35 @@ CREATE TABLE tls231_inpadoc_legal_event (
     event_type char(3) DEFAULT '',
     event_auth char(2) DEFAULT '',
     event_code varchar(4)  DEFAULT '',
-    event_filing_date date DEFAULT '9999-12-31',
-    event_publn_date date DEFAULT '9999-12-31',
-    event_effective_date date DEFAULT '9999-12-31',
+    event_filing_date date DEFAULT '9999-12-31' NOT NULL,
+    event_publn_date date DEFAULT '9999-12-31' NOT NULL,
+    event_effective_date date DEFAULT '9999-12-31' NOT NULL,
     event_text text DEFAULT '',
     ref_doc_auth char(2) DEFAULT '',
     ref_doc_nr varchar(20) DEFAULT '',
     ref_doc_kind char(2) DEFAULT '',
-    ref_doc_date date DEFAULT '9999-12-31',
+    ref_doc_date date DEFAULT '9999-12-31' NOT NULL,
     ref_doc_text text DEFAULT '',
     party_type varchar(3) DEFAULT '',
     party_seq_nr smallint default '0',
     party_new text DEFAULT '',
     party_old text DEFAULT '',
     spc_nr varchar(40) DEFAULT '',
-    spc_filing_date date DEFAULT '9999-12-31',
-    spc_patent_expiry_date date DEFAULT '9999-12-31',
-    spc_extension_date date DEFAULT '9999-12-31',
+    spc_filing_date date DEFAULT '9999-12-31' NOT NULL,
+    spc_patent_expiry_date date DEFAULT '9999-12-31' NOT NULL,
+    spc_extension_date date DEFAULT '9999-12-31' NOT NULL,
     spc_text text DEFAULT '',
     designated_states text DEFAULT '',
     extension_states varchar(30) DEFAULT '',
     fee_country char(2) DEFAULT '',
-    fee_payment_date date DEFAULT '9999-12-31',
-    fee_renewal_year smallint DEFAULT '9999',
+    fee_payment_date date DEFAULT '9999-12-31' NOT NULL,
+    fee_renewal_year smallint DEFAULT '9999' NOT NULL,
     fee_text text DEFAULT '',
     lapse_country char(2) DEFAULT '',
-    lapse_date date  DEFAULT '9999-12-31',
+    lapse_date date  DEFAULT '9999-12-31' NOT NULL,
     lapse_text text DEFAULT '',
     reinstate_country char(2) DEFAULT '',
-    reinstate_date date DEFAULT '9999-12-31',
+    reinstate_date date DEFAULT '9999-12-31' NOT NULL,
     reinstate_text text DEFAULT '',
     class_scheme varchar(4) DEFAULT '',
     class_symbol varchar(50) DEFAULT ''
@@ -267,7 +279,7 @@ CREATE TABLE tls801_country (
     ctry_code char(2) DEFAULT '' NOT NULL,
     iso_alph3 varchar(3) DEFAULT '' NOT NULL,
     st3_name varchar(100) DEFAULT '' NOT NULL,
-    state_indicator varchar(1) DEFAULT '' NOT NULL,
+    organisation_flag char(1) DEFAULT '' NOT NULL,
     continent varchar(25) DEFAULT '' NOT NULL,
     eu_member varchar(1) DEFAULT '' NOT NULL,
     epo_member varchar(1) DEFAULT '' NOT NULL,
@@ -298,7 +310,7 @@ CREATE TABLE tls902_ipc_nace2 (
     not_with_ipc varchar(8) DEFAULT '' NOT NULL,
     unless_with_ipc varchar(8) DEFAULT '' NOT NULL,
     nace2_code varchar(5) DEFAULT '' NOT NULL,
-    nace2_weight numeric DEFAULT 1 NOT NULL,
+    nace2_weight smallint DEFAULT 1 NOT NULL,
     nace2_descr varchar(150) DEFAULT '' NOT NULL
 );
 
@@ -306,23 +318,4 @@ CREATE TABLE tls904_nuts (
     nuts varchar(5) DEFAULT ('') NOT NULL,
     nuts_level smallint DEFAULT '0',
     nuts_label varchar(250) DEFAULT ''
-);
-
-CREATE TABLE tls906_person (
-    person_id integer DEFAULT 0 NOT NULL,
-    person_name text DEFAULT '' NOT NULL,
-    person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
-    person_address text DEFAULT '' NOT NULL,
-    person_ctry_code varchar(2) DEFAULT '' NOT NULL,
-    nuts varchar(5) DEFAULT '',
-    nuts_level smallint DEFAULT '9' NOT NULL,
-    doc_std_name_id integer DEFAULT 0 NOT NULL,
-    doc_std_name varchar(500) DEFAULT '' NOT NULL,
-    psn_id int DEFAULT '0' NOT NULL NOT NULL,
-    psn_name character varying (500) DEFAULT '' NOT NULL,
-    psn_level smallint DEFAULT '0' NOT NULL,
-    psn_sector character varying (50) DEFAULT '' NOT NULL,
-    han_id integer DEFAULT 0 NOT NULL,
-    han_name varchar(500) DEFAULT '' NOT NULL,
-    han_harmonized smallint DEFAULT 0 NOT NULL
 );
