@@ -4,7 +4,7 @@ CREATE TABLE tls201_appln (
     appln_nr varchar(15) DEFAULT '' NOT NULL,
     appln_kind char(2) DEFAULT '' NOT NULL,
     appln_filing_date date DEFAULT '9999-12-31' NOT NULL,
-    appln_filing_year smallint DEFAULT '9999' NOT NULL,	
+    appln_filing_year smallint DEFAULT '9999' NOT NULL,
     appln_nr_epodoc varchar(20) DEFAULT '' NOT NULL,
     appln_nr_original varchar(100) DEFAULT '' NOT NULL,
     ipr_type char(2) DEFAULT '' NOT NULL,
@@ -65,6 +65,7 @@ CREATE TABLE tls206_person (
     psn_name varchar(500) DEFAULT '' NOT NULL,
     psn_level smallint DEFAULT 0 NOT NULL,
     psn_sector varchar(50) DEFAULT '' NOT NULL,
+    han_id integer DEFAULT 0 NOT NULL,
     han_name text DEFAULT '' NOT NULL,
     han_harmonized integer DEFAULT 0 NOT NULL
 );
@@ -109,10 +110,10 @@ CREATE TABLE tls212_citation (
     citn_replenished integer DEFAULT 0 NOT NULL,
     citn_id smallint DEFAULT 0 NOT NULL,
     citn_origin char(3) DEFAULT '' NOT NULL,
-    cited_pat_publn_id varchar(32) DEFAULT '0' NOT NULL,
+    cited_pat_publn_id integer DEFAULT 0 NOT NULL,
     cited_appln_id integer DEFAULT 0 NOT NULL,
     pat_citn_seq_nr smallint DEFAULT 0::smallint NOT NULL,
-    cited_npl_publn_id integer DEFAULT 0 NOT NULL,
+    cited_npl_publn_id varchar(32) DEFAULT '0' NOT NULL,
     npl_citn_seq_nr smallint DEFAULT 0 NOT NULL,
     citn_gener_auth char(2) DEFAULT '' NOT NULL
 );
@@ -211,8 +212,8 @@ CREATE TABLE tls226_person_orig (
 
 
 CREATE TABLE tls227_pers_publn (
-    person_id integer DEFAULT 0 NOT NULL, 
-    pat_publn_id integer DEFAULT 0 NOT NULL, 
+    person_id integer DEFAULT 0 NOT NULL,
+    pat_publn_id integer DEFAULT 0 NOT NULL,
     applt_seq_nr integer DEFAULT 0 NOT NULL,
     invt_seq_nr integer DEFAULT 0 NOT NULL
 );
