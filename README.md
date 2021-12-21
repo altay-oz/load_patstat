@@ -1,4 +1,4 @@
-## EPO PATSTAT (2021 spring) installation bash scripts for PostgreSQL
+## EPO PATSTAT installation bash scripts for PostgreSQL
 
 These scripts help to insert data into PATSTAT DB from zip files found
 in PATSTAT bulk data sets.
@@ -8,8 +8,10 @@ Rassenfosse, Hélène Dernis, Geert Boedt (2014, 1 April version), An
 introduction to the Patstat database with example queries.
 
 Please take into account to use dos2unix or unix2dos to adjust the file
-format to your used system.  These scripts were tested with Ubuntu 18
+format to your used system. These scripts were tested with Ubuntu 18
 for the PATSTAT 2021 version and Debian 10 and 11 for the PATSTAT 2019.
+
+Depending on your PATSTAT release please choose the appropriate release.
 
 First, all zip files should be copied into a folder, preferably in an
 external hard disk or a HD other than the one containing the PATSTAT DB.
