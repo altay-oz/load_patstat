@@ -182,7 +182,7 @@ CREATE TABLE tls225_docdb_fam_cpc (
     cpc_value char(1) DEFAULT '' NOT NULL,
     cpc_action_date date DEFAULT '9999-12-31' NOT NULL,
     cpc_status char(1) DEFAULT '' NOT NULL,
-    cpc data_source char(1) DEFAULT '' NOT NULL
+    cpc_data_source char(1) DEFAULT '' NOT NULL
 );
 
 CREATE TABLE tls226_person_orig (
