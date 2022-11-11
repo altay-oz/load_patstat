@@ -33,7 +33,7 @@ ALTER TABLE tls223_appln_docus ADD PRIMARY KEY (appln_id, docus_class_symbol);
 
 ALTER TABLE tls224_appln_cpc ADD PRIMARY KEY (appln_id, cpc_class_symbol);
 
-ALTER TABLE tls225_docdb_fam_cpc ADD PRIMARY KEY (docdb_family_id, docdb_family_id, cpc_gener_auth);
+ALTER TABLE tls225_docdb_fam_cpc ADD PRIMARY KEY (docdb_family_id, cpc_gener_auth);
 
 ALTER TABLE tls226_person_orig ADD PRIMARY KEY (person_orig_id);
 
