@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 CREATE TABLE tls201_appln (
     appln_id integer DEFAULT 0 NOT NULL,
     appln_auth char(2) DEFAULT '' NOT NULL,
