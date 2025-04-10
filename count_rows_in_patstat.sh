@@ -1,6 +1,8 @@
 #!/bin/bash
 # count row numbers in patstat db
 
+read -e -p "Enter the name of the database: [patstat_year_edition] " PATSTAT_DB_NAME
+
 IFS=$'\n'
 
 # row count for each table documented by EPO in text file located at /CreateScripts/
@@ -21,7 +23,6 @@ tls214_npl_publn
 tls215_citn_categ
 tls216_appln_contn
 tls222_appln_jp_class
-tls223_appln_docus
 tls224_appln_cpc
 tls225_docdb_fam_cpc
 tls226_person_orig
@@ -39,7 +40,7 @@ tls904_nuts"
 for i in ${table_name_count}
 do
     table_name=`echo $i | cut -f1 -d" "`
-    db_count=`psql -t -c "SELECT count(*) FROM $table_name" patstat`
+    db_count=`psql -t -c "SELECT count(*) FROM $table_name" $PATSTAT_DB_NAME`
 
     echo "table_name = $table_name, db_count = $db_count"
     echo " "

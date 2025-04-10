@@ -5,6 +5,7 @@ CREATE TABLE tls201_appln (
     appln_kind char(2) DEFAULT '' NOT NULL,
     appln_filing_date date DEFAULT '9999-12-31' NOT NULL,
     appln_filing_year smallint DEFAULT '9999' NOT NULL,
+    appln_nr_epodoc varchar(20) DEFAULT '' NOT NULL,
     appln_nr_original varchar(100) DEFAULT '' NOT NULL,
     ipr_type char(2) DEFAULT '' NOT NULL,
     receiving_office char(2) DEFAULT '' NOT NULL,
@@ -162,11 +163,6 @@ CREATE TABLE tls222_appln_jp_class (
     jp_class_symbol varchar(50) DEFAULT '' NOT NULL
 );
 
-CREATE TABLE tls223_appln_docus (
-    appln_id integer DEFAULT 0 NOT NULL,
-    docus_class_symbol varchar(50) DEFAULT '' NOT NULL
-);
-
 CREATE TABLE tls224_appln_cpc (
     appln_id integer DEFAULT 0 NOT NULL,
     cpc_class_symbol varchar(19) DEFAULT '' NOT NULL
@@ -291,7 +287,6 @@ CREATE TABLE tls801_country (
 CREATE TABLE tls803_legal_event_code (
     event_auth char(2) DEFAULT '' NOT NULL,
     event_code varchar(4) DEFAULT '' NOT NULL,
-    event_impact char(1) DEFAULT '',
     event_descr varchar(250) DEFAULT '',
     event_descr_orig varchar(250) DEFAULT '',
     event_category_code char(1) DEFAULT '',

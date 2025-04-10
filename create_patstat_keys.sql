@@ -29,8 +29,6 @@ ALTER TABLE tls216_appln_contn ADD PRIMARY KEY (appln_id, parent_appln_id);
 
 ALTER TABLE tls222_appln_jp_class ADD PRIMARY KEY (appln_id, jp_class_scheme, jp_class_symbol);
 
-ALTER TABLE tls223_appln_docus ADD PRIMARY KEY (appln_id, docus_class_symbol);
-
 ALTER TABLE tls224_appln_cpc ADD PRIMARY KEY (appln_id, cpc_class_symbol);
 
 ALTER TABLE tls225_docdb_fam_cpc ADD PRIMARY KEY (docdb_family_id, cpc_class_symbol, cpc_gener_auth);
@@ -101,8 +99,6 @@ ALTER TABLE tls216_appln_contn ADD FOREIGN KEY (appln_id) REFERENCES tls201_appl
 ALTER TABLE tls216_appln_contn ADD FOREIGN KEY (parent_appln_id) REFERENCES tls201_appln(appln_id);
 
 ALTER TABLE tls222_appln_jp_class ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-
-ALTER TABLE tls223_appln_docus ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 
 ALTER TABLE tls224_appln_cpc ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 
