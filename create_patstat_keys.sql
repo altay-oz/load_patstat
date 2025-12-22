@@ -75,12 +75,10 @@ ALTER TABLE tls204_appln_prior ADD FOREIGN KEY (appln_id) REFERENCES tls201_appl
 ALTER TABLE tls204_appln_prior ADD FOREIGN KEY (prior_appln_id) REFERENCES tls201_appln(appln_id);
 
 ALTER TABLE tls205_tech_rel ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-
 ALTER TABLE tls205_tech_rel ADD FOREIGN KEY (tech_rel_appln_id) REFERENCES tls201_appln(appln_id);
 
-ALTER TABLE tls207_pers_appln ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
-
 ALTER TABLE tls207_pers_appln ADD FOREIGN KEY (person_id) REFERENCES tls206_person(person_id);
+ALTER TABLE tls207_pers_appln ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 
 ALTER TABLE tls209_appln_ipc ADD FOREIGN KEY (appln_id) REFERENCES tls201_appln(appln_id);
 

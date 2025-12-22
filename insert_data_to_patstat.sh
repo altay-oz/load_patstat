@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2024 Altay Özaygen
+# Copyright (c) 2019-2025 Altay Özaygen
 
 # this script has tree parts
 # 0- unzip files obtained from EPO to obtain few zip files containing data only for a single table
@@ -38,13 +38,6 @@ postgres=# ALTER DATABASE $PATSTAT_DB_NAME OWNER TO your_user_name;"
 fi
 
 read -e -p "Enter the path for the zip files: [/path/to/patstat/zip_files] " ZIP_FILES_DIR
-
-# unzip all files, there won't be any change in disk usage
-# we will obtain new zip files containing data for a distinct table
-for file in $ZIP_FILES_DIR/*.zip; do
-    unzip $file -d  $ZIP_FILES_DIR
-    rm $file
-done
 
 ## defining tmp directory
 TMP_DIR=$ZIP_FILES_DIR"/tmp/"
