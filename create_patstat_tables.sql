@@ -20,7 +20,7 @@ CREATE TABLE tls201_appln (
     earliest_publn_year smallint DEFAULT 9999 NOT NULL,
     earliest_pat_publn_id integer DEFAULT 0 NOT NULL,
     granted char(1) DEFAULT 'N' NOT NULL,
-    doc_db_family_id integer DEFAULT 0 NOT NULL,
+    docdb_family_id integer DEFAULT 0 NOT NULL,
     inpadoc_family_id integer DEFAULT 0 NOT NULL,
     docdb_family_size smallint DEFAULT 0 NOT NULL,
     nb_citing_docdb_fam smallint DEFAULT 0 NOT NULL,
@@ -181,30 +181,29 @@ CREATE TABLE tls225_docdb_fam_cpc (
 );
 
 CREATE TABLE tls226_person_orig (
-	person_orig_id integer DEFAULT 0 NOT NULL,
-	person_id integer DEFAULT 0 NOT NULL,
-	source char(5) DEFAULT '' NOT NULL,
-	source_version varchar(10) DEFAULT '' NOT NULL,
-	name_freeform varchar(500) DEFAULT '' NOT NULL,
-	person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
-	last_name varchar(500) DEFAULT '' NOT NULL,
-	first_name varchar(500) DEFAULT '' NOT NULL,
-	middle_name varchar(500) DEFAULT '' NOT NULL,
-	address_freeform varchar(1000) DEFAULT '' NOT NULL,
-	address_1 varchar(500) DEFAULT '' NOT NULL,
-	address_2 varchar(500) DEFAULT '' NOT NULL,
-	address_3 varchar(500) DEFAULT '' NOT NULL,
-	address_4 varchar(500) DEFAULT '' NOT NULL,
-	address_5 varchar(500) DEFAULT '' NOT NULL,
-	street varchar(500) DEFAULT '' NOT NULL,
-	city varchar(200) DEFAULT '' NOT NULL,
-  	zip_code varchar(30) DEFAULT '' NOT NULL,
-	state char(2) DEFAULT '' NOT NULL,
-	person_ctry_code char(2) DEFAULT '' NOT NULL,
-	residence_ctry_code char(2) DEFAULT '' NOT NULL,
-	role varchar(2) DEFAULT '' NOT NULL
+    person_orig_id integer DEFAULT 0 NOT NULL,
+    person_id integer DEFAULT 0 NOT NULL,
+    source char(5) DEFAULT '' NOT NULL,
+    source_version varchar(10) DEFAULT '' NOT NULL,
+    name_freeform varchar(500) DEFAULT '' NOT NULL,
+    person_name_orig_lg varchar(500) DEFAULT '' NOT NULL,
+    last_name varchar(500) DEFAULT '' NOT NULL,
+    first_name varchar(500) DEFAULT '' NOT NULL,
+    middle_name varchar(500) DEFAULT '' NOT NULL,
+    address_freeform varchar(1000) DEFAULT '' NOT NULL,
+    address_1 varchar(500) DEFAULT '' NOT NULL,
+    address_2 varchar(500) DEFAULT '' NOT NULL,
+    address_3 varchar(500) DEFAULT '' NOT NULL,
+    address_4 varchar(500) DEFAULT '' NOT NULL,
+    address_5 varchar(500) DEFAULT '' NOT NULL,
+    street varchar(500) DEFAULT '' NOT NULL,
+    city varchar(200) DEFAULT '' NOT NULL,
+    zip_code varchar(30) DEFAULT '' NOT NULL,
+    state char(2) DEFAULT '' NOT NULL,
+    person_ctry_code char(2) DEFAULT '' NOT NULL,
+    residence_ctry_code char(2) DEFAULT '' NOT NULL,
+    role varchar(2) DEFAULT '' NOT NULL
 );
-
 
 CREATE TABLE tls227_pers_publn (
     person_id integer DEFAULT 0 NOT NULL,
@@ -236,7 +235,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     event_seq_nr smallint DEFAULT 0,
     event_type char(3) DEFAULT '',
     event_auth char(2) DEFAULT '',
-    event_code varchar(4)  DEFAULT '',
+    event_code varchar(4) DEFAULT '',
     event_filing_date date DEFAULT '9999-12-31' NOT NULL,
     event_publn_date date DEFAULT '9999-12-31' NOT NULL,
     event_effective_date date DEFAULT '9999-12-31' NOT NULL,
@@ -247,7 +246,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     ref_doc_date date DEFAULT '9999-12-31' NOT NULL,
     ref_doc_text text DEFAULT '',
     party_type varchar(3) DEFAULT '',
-    party_seq_nr smallint default '0',
+    party_seq_nr smallint DEFAULT '0',
     party_new text DEFAULT '',
     party_old text DEFAULT '',
     spc_nr varchar(40) DEFAULT '',
@@ -262,7 +261,7 @@ CREATE TABLE tls231_inpadoc_legal_event (
     fee_renewal_year smallint DEFAULT '9999' NOT NULL,
     fee_text text DEFAULT '',
     lapse_country char(2) DEFAULT '',
-    lapse_date date  DEFAULT '9999-12-31' NOT NULL,
+    lapse_date date DEFAULT '9999-12-31' NOT NULL,
     lapse_text text DEFAULT '',
     reinstate_country char(2) DEFAULT '',
     reinstate_date date DEFAULT '9999-12-31' NOT NULL,
@@ -282,7 +281,6 @@ CREATE TABLE tls801_country (
     oecd_member varchar(1) DEFAULT '' NOT NULL,
     discontinued varchar(1) DEFAULT '' NOT NULL
 );
-
 
 CREATE TABLE tls803_legal_event_code (
     event_auth char(2) DEFAULT '' NOT NULL,
@@ -314,3 +312,4 @@ CREATE TABLE tls904_nuts (
     nuts_level smallint DEFAULT '0',
     nuts_label varchar(250) DEFAULT ''
 );
+

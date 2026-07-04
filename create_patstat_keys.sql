@@ -118,3 +118,11 @@ ALTER TABLE tls230_appln_techn_field ADD FOREIGN KEY (appln_id) REFERENCES tls20
 --ALTER TABLE tls231_inpadoc_legal_event ADD FOREIGN KEY (event_auth, event_code) REFERENCES tls803_legal_event_code(event_auth, event_code);
 
 --ALTER TABLE tls901_techn_field_ipc ADD FOREIGN KEY (techn_field_nr) REFERENCES tls209_appln_ipc(techn_field_nr);
+
+
+-- Enable extension (run once)
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+-- Create indexes for faster LIKE/ILIKE
+CREATE INDEX idx_title_trgm ON tls202_appln_title USING gin (appln_title gin_trgm_ops);
+CREATE INDEX idx_abstract_trgm ON tls203_appln_abstr USING gin (appln_abstract gin_trgm_ops);

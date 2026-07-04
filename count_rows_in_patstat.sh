@@ -1,7 +1,12 @@
 #!/bin/bash
 # count row numbers in patstat db
 
+# define the patstat database name
 read -e -p "Enter the name of the database: [patstat_year_edition] " PATSTAT_DB_NAME
+
+# Define timestamp for the filename (using underscores for better CLI compatibility)
+TIMESTAMP=$(date "+%Y-%m-%d_%H-%M-%S")
+LOGFILE="db_counts_${TIMESTAMP}_${PATSTAT_DB_NAME}.log"
 
 IFS=$'\n'
 
@@ -37,12 +42,12 @@ tls901_techn_field_ipc
 tls902_ipc_nace2
 tls904_nuts"
 
-for i in ${table_name_count}
+for table_name in ${table_name_count}
 do
-    table_name=`echo $i | cut -f1 -d" "`
-    db_count=`psql -t -c "SELECT count(*) FROM $table_name" $PATSTAT_DB_NAME`
+    # Get the count silently
+    row_count=$(psql -t -c "SELECT count(*) FROM $table_name" "$PATSTAT_DB_NAME" | xargs)
 
-    echo "table_name = $table_name, db_count = $db_count"
-    echo " "
-
+    # Log and display the formatted output
+    echo "$table_name, row_count = $row_count" | tee -a "$LOGFILE"
+    echo " " | tee -a "$LOGFILE"
 done
